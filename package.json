@@ -1,0 +1,19 @@
+{
+  "name": "dev5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KasperHegemann/DEV5.git"
+  },
+  "author": "Kasper Hegemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KasperHegemann/DEV5/issues"
+  },
+  "homepage": "https://github.com/KasperHegemann/DEV5#readme"
+}
