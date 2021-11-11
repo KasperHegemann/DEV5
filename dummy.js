@@ -29,4 +29,4 @@ module.exports = {
         age: 21,
         bestTrick: 'laserFlip'
     }
-}
+};
