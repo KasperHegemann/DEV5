@@ -27,3 +27,17 @@ api.get('/skaters', (req, res) => {
 api.listen(PORT, () => {
     console.log(`running at ${HOST}:${PORT}`);
 });
+
+
+
+
+/*
+api.post('/skaters', (req, res) => {
+    const skater = {
+        id: data.length + 1,
+        name: req.body.name
+    };
+    data.push(skater);
+    res.send(skater);
+})
+*/
