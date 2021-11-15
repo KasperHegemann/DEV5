@@ -1,12 +1,12 @@
 const express = require('express');
-const api = require('./index');
+const app = require('./index');
 
 
 
 const PORT = 8888;
 
 
-api.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`running at localhost:${PORT}`);
 });
 

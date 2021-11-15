@@ -3,17 +3,17 @@ const {
 } = require('express');
 const express = require('express');
 
-const api = express();
+const app = express();
 
 const HOST = 'localhost';
 const PORT = 8888;
 
-api.use(express.json());
+app.use(express.json());
 
 
-api.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Kasper API test');
 });
 
 
-module.exports = api;
+module.exports = app;
