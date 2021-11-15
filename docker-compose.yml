@@ -1,8 +1,37 @@
-version: "3.9"
+version: "3.2"
+
 services:
-  web:
-    build: .
+  api: 
+    build:  ./api
     ports:
-      - "5000:5000"
-  redis:
-    image: "redis:alpine"
+      - 3000:3000
+      - 8888:8888
+    volumes:
+      - ./api/src:/usr/app/src
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - APP_DB_USER=docker
+      - APP_DB_PASS=docker
+      - APP_DB_NAME=docker
+      
+  postgres:
+    image: postgres:13.1
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=db
+
+
+  
+
+
+
+
+    
