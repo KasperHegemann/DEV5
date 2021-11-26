@@ -2,18 +2,17 @@ version: "3.2"
 
 services:
   api: 
-    build:  ./api
+    build:  ./api 
     ports:
       - 3000:3000
       - 8888:8888
     volumes:
       - ./api/src:/usr/app/src
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
-      - APP_DB_USER=docker
-      - APP_DB_PASS=docker
-      - APP_DB_NAME=docker
+      POSTGRES_HOST: postgres
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DATABASE:
       
   postgres:
     image: postgres:13.1
@@ -24,9 +23,9 @@ services:
       retries: 10
     restart: always
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DATABASE=db
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DATABASE:
 
 
   
