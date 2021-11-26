@@ -1,7 +1,11 @@
 version: "3.2"
 
 services:
-  api: 
+
+  api:     
+    depends_on:
+      store:
+        condition: service_healthy
     build:  ./api
     ports:
       - 3000:3000
@@ -27,6 +31,14 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
       - POSTGRES_DATABASE=db
+
+  store:
+    image: "postgres:latest"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 
   
