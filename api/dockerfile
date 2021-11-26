@@ -3,13 +3,13 @@ FROM node:latest
 WORKDIR /usr/app
 
 #c copy package json 
-COPY package*.json .
+COPY package*.json ./
 
 # run npm i
 RUN npm i
 
 # copy code files
-COPY . .
+COPY . ./
 
 
 CMD ["npm", "start"]
