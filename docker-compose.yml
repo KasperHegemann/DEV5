@@ -4,15 +4,10 @@ services:
   api: 
     build:  ./api 
     ports:
-      - 3000:3000
       - 8888:8888
     volumes:
       - ./api/src:/usr/app/src
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
-      POSTGRES_DATABASE:
+      
       
   postgres:
     image: postgres:13.1
@@ -22,18 +17,20 @@ services:
       interval: 10s
       retries: 10
     restart: always
+    ports:
+     - 3000:3000
     environment:
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
-      POSTGRES_DATABASE:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DATABASE: db
 
-  store:
-    image: "postgres:latest"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+  #store:
+   # image: "postgres:latest"
+    #healthcheck:
+     # test: ["CMD-SHELL", "pg_isready -U postgres"]
+      #interval: 5s
+      #timeout: 5s
+      #retries: 5
 
 
   
