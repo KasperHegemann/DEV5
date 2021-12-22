@@ -18,11 +18,14 @@ services:
       retries: 10
     restart: always
     ports:
-     - 3000:3000
+     - "3000:3000"
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DATABASE: db
+      POSTGRES_PORT: 3000
+    command: -p 3000
+
 
   #store:
    # image: "postgres:latest"

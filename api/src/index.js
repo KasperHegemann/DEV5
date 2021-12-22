@@ -1,13 +1,10 @@
 //const { application } = require('express');
 const express = require('express');
-const knex = require("../sqlconfig.js");
+const knex = require("./sqlconfig");
 
 
 const app = express();
 
-const HOST = 'localhost';
-const PORT = 8888;
-const SQLPORT = 3000;
 
 app.use(express.json());
 
