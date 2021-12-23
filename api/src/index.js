@@ -4,7 +4,9 @@ const knex = require("./sqlconfig");
 
 
 const app = express();
-
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.use(express.json());
 
@@ -14,7 +16,11 @@ app.get('/', (req, res) => {
 });
 
 app.get("/api/allSkaters", (req, res) => {
-    knex("skaters").then((skaters) => res.json(skaters));
+    //   knex("skaters").then((skaters) => res.json(skaters));
+    knex.select().from("skaters").then(data => {
+        return res.json(data);
+    })
+
 });
 
 app.post("/api/addSkater", async (req, res) => {
@@ -24,7 +30,7 @@ app.post("/api/addSkater", async (req, res) => {
                 name: req.body.name,
                 tick: req.body.trick
             })
-            .returning("*")
+
             .then((skater) => res.json(skater));
     }
 });
