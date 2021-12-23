@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/KasperHegemann/DEV5#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "jest": "^27.3.1",
-    "knex": "^0.95.14",
-    "nodemon": "^2.0.14"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jest": "^27.4.5",
+    "knex": "^0.95.15",
+    "nodemon": "^2.0.14",
+    "pg": "^8.7.1"
   }
 }
