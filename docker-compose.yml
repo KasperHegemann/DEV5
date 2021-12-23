@@ -4,36 +4,40 @@ services:
   api: 
     build:  ./api 
     ports:
-      - 8888:8888
+      - 3000:3000
+    environment:
+      pg_connection_string: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:3000/${POSTGRES_DATABASE}"
     volumes:
       - ./api/src:/usr/app/src
+    depends_on:
+      postgres:
+        condition: service_healthy
       
       
   postgres:
-    image: postgres:13.1
+    image: postgres:latest
     healthcheck:
       test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
       timeout: 45s
       interval: 10s
-      retries: 10
+      retries: 5
     restart: always
     ports:
-     - "3000:3000"
+     - "5000:5000"
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
       POSTGRES_DATABASE: db
       POSTGRES_PORT: 3000
-    command: -p 3000
 
 
   #store:
-   # image: "postgres:latest"
-    #healthcheck:
-     # test: ["CMD-SHELL", "pg_isready -U postgres"]
-      #interval: 5s
-      #timeout: 5s
-      #retries: 5
+  #  image: "postgres:latest"
+  #  healthcheck:
+  #    test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #    interval: 5s
+  #    timeout: 5s
+  #    retries: 5
 
 
   

@@ -1,18 +1,21 @@
+require('dotenv');
+
 const knex = require("knex")({
   client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: 3000,
-    user: 'root',
-    password: 'password',
-    database: 'db'
-  },
+  connection: process.env.pg_connection_string,
+  /* {
+     host: 'localhost',
+     port: 3000,
+     user: 'root',
+     password: 'password',
+     database: 'db'
+   } */
   searchPath: ["knex", "public"],
 });
 
 (async () => {
   try {
-    if (knex.schema.hasTable("skaters")) {
+    if (!knex.schema.hasTable("skaters")) {
       knex.schema
         .withSchema("public")
         .createTable("skaters", function (table) {
@@ -21,7 +24,7 @@ const knex = require("knex")({
         });
     }
 
-    if (knex.schema.hasTable("trick")) {
+    if (!knex.schema.hasTable("trick")) {
       knex.schema
         .withSchema("public")
         .createTable("trick", function (table) {
